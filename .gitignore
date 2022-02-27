@@ -53,3 +53,8 @@ profile
 
 /wop.*
 /wopded.*
+
+
+build-x86_64
+build-arm64
+release

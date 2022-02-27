@@ -77,6 +77,10 @@ function(wop_add_library)
 		set(ARCH x86_64)
 	endif()
 
+	if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(arm64|aarch64)$")
+		set(ARCH "arm64")
+	endif()
+
 	set(OUTPUTNAME "${_LIB_TARGET}_${ARCH}")
 	set(LIB_BINARY_DIR "${ENGINE_BINARY_DIR}")
 	if (_LIB_GAME)
@@ -133,6 +137,10 @@ function(wop_add_executable)
 	set(ARCH x86)
 	if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 		set(ARCH x86_64)
+	endif()
+
+	if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(arm64|aarch64)$")
+		set(ARCH "arm64")
 	endif()
 
 	set(OUTPUTNAME "${_EXE_TARGET}.${ARCH}")

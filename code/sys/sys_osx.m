@@ -142,17 +142,17 @@ char *Sys_StripAppBundle(char *dir)
 @end
 
 void Sys_InitProtocolHandler() {
-	[NSApplication sharedApplication];
+	// [NSApplication sharedApplication];
 
-	AppDelegate *appDelegate = [AppDelegate new];
-	NSAppleEventManager *sharedAppleEventManager = [NSAppleEventManager new];
-	[sharedAppleEventManager
-	  setEventHandler:appDelegate
-		  andSelector:@selector(handleAppleEvent:withReplyEvent:)
-		forEventClass:kInternetEventClass
-		   andEventID:kAEGetURL];
+	// AppDelegate *appDelegate = [AppDelegate new];
+	// NSAppleEventManager *sharedAppleEventManager = [NSAppleEventManager new];
+	// [sharedAppleEventManager
+	//   setEventHandler:appDelegate
+	// 	  andSelector:@selector(handleAppleEvent:withReplyEvent:)
+	// 	forEventClass:kInternetEventClass
+	// 	   andEventID:kAEGetURL];
 
-	[NSApp setDelegate:appDelegate];
-	[NSApp run];
+	// [NSApp setDelegate:appDelegate];
+	// [NSApp run];
 }
 #endif
