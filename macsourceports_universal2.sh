@@ -60,18 +60,7 @@ cp ${ARM64_BUILD_FOLDER}/${EXECUTABLE_FOLDER_PATH}/renderer_vulkan_arm64.dylib $
 
 cp -a libs/libs/macosx/. ${BUILT_PRODUCTS_DIR}/${EXECUTABLE_FOLDER_PATH}
 
+export ENTITLEMENTS_FILE="misc/osx/WorldOfPadman.entitlements"
+
 # sign and notarize
-"../MSPScripts/sign_and_notarize.sh" "$1"
-
-# copy resources later to make notarization not take forever
-mkdir "${BUILT_PRODUCTS_DIR}/${EXECUTABLE_FOLDER_PATH}/wop"
-cp -a ../worldofpadman-1-6-2/wop/. "${BUILT_PRODUCTS_DIR}/${EXECUTABLE_FOLDER_PATH}/wop"
-
-if [ "$1" == "notarize" ]; then
-    cd ${BUILT_PRODUCTS_DIR}
-    echo "zipping notarized with resources..."
-    POST_NOTARIZED_FULL_ZIP="${PRODUCT_NAME}_notarized_full_$(date +"%Y-%m-%d").zip"
-    ditto -c -k --sequesterRsrc --keepParent ${WRAPPER_NAME} ${POST_NOTARIZED_FULL_ZIP}
-
-    echo "done. ${POST_NOTARIZED_ZIP} contains notarized ${WRAPPER_NAME} build with resources."
-fi 
+"../MSPScripts/sign_and_notarize.sh" "$1" entitlements
